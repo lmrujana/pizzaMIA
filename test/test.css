@@ -3,13 +3,16 @@ body{
     background: #222;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 400;
+    color: #8a221a;
+
 }
 .container{
     width: 80%;
     margin: 0 auto;
 }
 header{
-    background: #55d6aa
+
+    background: #eaa551
 }
 header::after{
     content: '';
@@ -71,6 +74,8 @@ nav a:hover::before{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    color: #8a221a;
+
 }
 .containers{
     width: 1200px;
@@ -127,3 +132,48 @@ nav a:hover::before{
 .btn1:hover::before, .btn2:hover::before{
     height: 180%;
 }
+
+
+
+
+/* MY CODE  */
+aside {
+    background-color: wheat;
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:#a70603;
+    overflow-x: hidden;
+    padding-top: 20px;
+
+  }
+  
+  .sidenav a {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f7dbb4;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  #main {
+    margin-left: 200px; 
+  }
+
+  #roundPizza {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+  }
+
