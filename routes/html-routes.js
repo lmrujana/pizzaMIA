@@ -44,4 +44,13 @@ module.exports = function(app) {
     // console.log(hbsObject);
     res.render("new-order", hbsObject);
   });
+
+  //Add topping page
+  app.get("/add-topping", async (req, res) => {
+    const toppings = await db.Topping.findAll({});
+
+    const hbsObject = { toppings };
+
+    res.render("add-topping", hbsObject);
+  });
 };
