@@ -55,7 +55,7 @@ module.exports = function(app) {
     });
   };
 
-  const addToppings = (req, res) => {
+  const addToppings = (req, res, next) => {
     //Toppings are selected in a form, using checkboxes. Then they are sent
     //to the back-end in an array.
     const toppingsArray = req.body.toppings;
