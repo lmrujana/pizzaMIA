@@ -20,7 +20,7 @@
                     {{#each Order}}
                     {{#if statusId = 0}}
                     <li class="list-group-item list-group-item-danger">{{customer}} 
-                    <button type="button" class="btn btn-outline-danger btn-sm">Ready</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-status="{{statusId}}" data-id="{{this.id}}">Ready</button>
                     </li>
                     {{/if}}
                     {{/each}}  
@@ -36,7 +36,7 @@
                     {{#each Order}}
                     {{if statusId = 1}}
                     <li class="list-group-item list-group-item-success">{{customer}} 
-                    <button type="button" class="btn btn-outline-success btn-sm">Pay</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-status="{{statusId}}" data-id="{{this.id}}">Pay</button>
                     </li>
                     {{/if}}
                     {{/each}}
