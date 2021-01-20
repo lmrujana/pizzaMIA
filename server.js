@@ -28,6 +28,24 @@ require("./routes/api-size-routes.js")(app);
 require("./routes/api-status-routes.js")(app);
 require("./routes/api-topping-routes.js")(app);
 
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("public"));
+
+// Parse request body as JSON
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//Requiring and setting express-handlebars
+const handlebars = require("express-handlebars");
+
+app.set("view engine", "handlebars");
+app.engine(
+  "handlebars",
+  handlebars({
+    defaultLayout: "main"
+  })
+);
+
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
