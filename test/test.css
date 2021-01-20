@@ -4,12 +4,14 @@ body{
     font-family: 'Courier New', Courier, monospace;
     font-weight: 400;
     color: #8a221a;
+
 }
 .container{
     width: 80%;
     margin: 0 auto;
 }
 header{
+
     background: #eaa551
 }
 header::after{
@@ -73,7 +75,7 @@ nav a:hover::before{
     align-items: center;
     min-height: 100vh;
     color: #8a221a;
-    
+
 }
 .containers{
     width: 1200px;
@@ -174,3 +176,4 @@ aside {
     width: 150px;
     height: 150px;
   }
+
