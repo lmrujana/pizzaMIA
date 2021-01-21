@@ -33,17 +33,6 @@
             <div class="box box-two">
                 <h3>Orders Ready</h3>
                 <ul class="list-group">
-<<<<<<< HEAD
-                    {{#each Order}}
-                    {{if statusId = 1}}
-                    <li class="list-group-item list-group-item-success">{{customer}} 
-                    <button type="button" class="btn btn-outline-success btn-sm" data-status="{{statusId}}" data-id="{{this.id}}">Pay</button>
-                    </li>
-                    {{/if}}
-                    {{/each}}
-                  
-                    
-=======
                     {{#each orders}}
                     {{#if (isEqual2 dataValues.StatusId)}}
                     <li class="list-group-item list-group-item-success">{{dataValues.id}} - {{dataValues.customer}} 
@@ -51,7 +40,6 @@
                     </li>
                     {{/if}}
                     {{/each}}
->>>>>>> origin/main
                 </ul>
             </div>
         </div>
