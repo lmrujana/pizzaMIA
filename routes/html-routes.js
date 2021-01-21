@@ -44,4 +44,27 @@ module.exports = function(app) {
     // console.log(hbsObject);
     res.render("new-order", hbsObject);
   });
+
+  //Add topping page
+  app.get("/add-topping", async (req, res) => {
+    const toppings = await db.Topping.findAll({});
+
+    const hbsObject = { toppings };
+
+    res.render("add-topping", hbsObject);
+  });
+
+  //Index Handlebars page
+  app.get("/index", async (req, res) => {
+    const orders = await db.Order.findAll({});
+
+    const orderToppings = await db.OrderToppings.findAll({});
+
+    const hbsObject = {
+      orders,
+      orderToppings
+    };
+
+    res.render("index", hbsObject);
+  });
 };

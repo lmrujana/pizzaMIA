@@ -104,4 +104,15 @@ module.exports = function(app) {
       res.status(202).send("Updated");
     });
   });
+
+  //Deleting an order
+  app.delete("/api/orders/:id", (req, res) => {
+    db.Order.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(() => {
+      res.status(202).send("Deleted");
+    });
+  });
 };
