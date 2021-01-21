@@ -1,0 +1,36 @@
+<h1>Add a new topping</h1>
+
+<p>Available toppings:</p>
+<ul>
+    {{#each toppings}}
+        <li>{{dataValues.label}}</li>
+    {{/each}}
+</ul>
+
+<form method="POST" id="add-topping-form">
+    <label for="label">Topping's Name (label): </label>
+    <input type="text" name="label" id="label">
+    <input type="submit" value="Add topping">
+</form>
+
+<script type="text/javascript">
+    $(function(){
+        $("#add-topping-form").on("submit", function(event){
+            event.preventDefault();
+
+            const label = $.trim($("#label").val());
+
+            const newTopping = {
+                label
+            };
+
+            $.ajax("/api/topping-new", {
+                type: "POST",
+                data: newTopping
+            }).then(function(){
+                console.log("Added new topping!");
+                location.reload();
+            });
+        });
+    });
+</script>
