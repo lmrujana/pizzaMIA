@@ -45,6 +45,15 @@ app.engine(
     defaultLayout: "main"
   })
 );
+const hbs = handlebars.create({});
+
+hbs.handlebars.registerHelper("isEqual1", val1 => {
+  return val1 === 1;
+});
+
+hbs.handlebars.registerHelper("isEqual2", val2 => {
+  return val2 === 2;
+});
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
