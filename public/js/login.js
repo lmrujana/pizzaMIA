@@ -12,7 +12,7 @@ $(document).ready(() => {
       password: passwordInput.val().trim()
     };
 
-    if (!userData.email || !userData.password) {
+    if (!userData.username || !userData.password) {
       return;
     }
 
