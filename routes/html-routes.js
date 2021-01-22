@@ -53,4 +53,16 @@ module.exports = function(app) {
 
     res.render("add-topping", hbsObject);
   });
+  app.get("/index", async (req, res) => {
+    const orders = await db.Order.findAll({});
+
+    const orderToppings = await db.OrderToppings.findAll({});
+
+    const hbsObject = {
+      orders,
+      orderToppings
+    };
+
+    res.render("index", hbsObject);
+  });
 };
