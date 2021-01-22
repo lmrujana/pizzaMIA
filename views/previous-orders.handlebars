@@ -1,0 +1,13 @@
+<nav class="nav">
+    <a class="nav-link" href="/index">Main Page</a>
+    <a class="nav-link" href="/new-order">New Order</a>
+    <a class="nav-link" href="/add-topping">Add Topping</a>
+</nav>
+
+<h1>Previous Orders</h1>
+
+<ul>
+    {{#each orders}}
+        <li>{{dataValues.id}} - {{dataValues.customer}} - {{size.dataValues.label}} - ${{size.dataValues.price}}</li>
+    {{/each}}
+</ul>

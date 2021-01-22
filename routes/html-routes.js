@@ -58,11 +58,34 @@ module.exports = function(app) {
 
     const orderToppings = await db.OrderToppings.findAll({});
 
+    // console.log(orderToppings);
     const hbsObject = {
       orders,
       orderToppings
     };
 
     res.render("index", hbsObject);
+  });
+
+  //Previous Orders oage
+  app.get("/previous-orders", async (req, res) => {
+    const orders = await db.Order.findAll({
+      where: {
+        StatusId: 3
+      },
+      include: [
+        {
+          model: db.Size,
+          as: "size"
+        }
+      ]
+    });
+
+    // console.log(orders[0].size);
+    const hbsObject = {
+      orders
+    };
+
+    res.render("previous-orders", hbsObject);
   });
 };
