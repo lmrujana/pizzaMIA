@@ -127,3 +127,27 @@ nav a:hover::before{
 .btn1:hover::before, .btn2:hover::before{
     height: 180%;
 }
+
+.containers1{
+    margin-right: 10px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    background: rgb(99, 98, 98);
+    width: 60%;
+}
+.containers2{
+    text-align: center;
+    margin-left: 10px;
+    padding: 5px 5px 5px 5px;
+    background: rgb(99, 98, 98);
+    width: 60%;
+}
+/*signup form*/
+.container1{
+    border: 2px solid;
+    border-radius: 5px 5px;
+    margin-top: 50px;
+    padding: 5px 0 0 5px;
+    background: #fff;
+    width: 60%;
+}
