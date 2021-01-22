@@ -23,13 +23,13 @@ $(document).ready(() => {
   });
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
-  function loginUser(email, password) {
+  function loginUser(username, password) {
     $.post("/api/login", {
       username: username,
       password: password
     })
       .then(() => {
-        window.location.replace("/members");
+        window.location.replace("/index");
         // If there's an error, log the error
       })
       .catch(err => {
