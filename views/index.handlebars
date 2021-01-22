@@ -1,30 +1,29 @@
-    <header>
+<header>
         <div class="container-sm">
             <h4 class="nav-title">Welcome User</h4>
-            <div id="clockbox"></div>
-            <nav class="nav">
-                <a class="nav-link" href="#">Previous Orders</a>
-                <a class="nav-link" href="/new-order">New Order</a>
-                <a class="nav-link" href="/add-topping">Add Topping</a>
-                <a class="nav-link" href="#">Add Employee</a>
+            <nav>
+                <ul>
+                    <li><a href="#">Previous Orders</a></li>
+                    <li><a href="#">New Order</a></li>
+                    <li><a href="#">Add Topping</a></li>
+                    <li><a href="#">Add Employee</a></li>
+                </ul>
             </nav>
         </div>
     </header>
     <main class="body">
         <div class="containers">
             <div class="box">
-                <h3>Orders Preparing</h3>
+                <h3>Orders Waiting</h3>
                 <ul class="list-group">
                     {{#each orders}}
-                    {{#if (isEqual1 dataValues.StatusId)}}
-                    <li class="list-group-item list-group-item-danger">{{dataValues.id}} - {{dataValues.customer}} 
-                    <button type="button" class="btn btn-outline-danger btn-sm preparing" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Ready</button>
-                        <a>Order Created on <span>{{moment dataValues.createdAt format="MM-DD-YYYY"}}</span> at <span>{{moment dataValues.createdAt format="h:mm:ss a"}}</span></a>
+                    {{#if (isEqual1 data.dataValues.StatusId)}}
+                    <li class="list-group-item list-group-item-danger">{{dataValues.id}} - {{dataValues.customer}}
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-status="{{dataValues.statusId}}" data-id="{{dataValues.id}}">Ready</button>
                     </li>
+                    <a>Order Created on <span>{{moment dataValues.createdAt format="MM-DD-YYYY"}}</span> at <span>{{moment dataValues.createdAt format="h:mm:ss a"}}</span></a>
                     {{/if}}
-                    {{/each}}  
-                  
-                    
+                    {{/each}}
                 </ul>
             </div>
         </div>
@@ -35,10 +34,11 @@
                     {{#each orders}}
                     {{#if (isEqual2 dataValues.StatusId)}}
                     <li class="list-group-item list-group-item-success">{{dataValues.id}} - {{dataValues.customer}} 
-                    <button type="button" class="btn btn-outline-success btn-sm ready" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Pay</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Pay</button>
                     </li>
                     {{/if}}
                     {{/each}}
+                    
                 </ul>
             </div>
         </div>
@@ -89,4 +89,4 @@ document.getElementById('clockbox').innerHTML=clocktext;
 
 GetClock();
 setInterval(GetClock,1000);
-    </script>
+</script>    
