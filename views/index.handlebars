@@ -1,4 +1,3 @@
-<body>
     <header>
         <div class="container-sm">
             <h4 class="nav-title">Welcome User</h4>
@@ -13,12 +12,12 @@
     <main class="body">
         <div class="containers">
             <div class="box">
-                <h3>Orders Waiting</h3>
+                <h3>Orders Preparing</h3>
                 <ul class="list-group">
                     {{#each orders}}
                     {{#if (isEqual1 dataValues.StatusId)}}
                     <li class="list-group-item list-group-item-danger">{{dataValues.id}} - {{dataValues.customer}} 
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Ready</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm preparing" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Ready</button>
                     </li>
                     {{/if}}
                     {{/each}}  
@@ -34,7 +33,7 @@
                     {{#each orders}}
                     {{#if (isEqual2 dataValues.StatusId)}}
                     <li class="list-group-item list-group-item-success">{{dataValues.id}} - {{dataValues.customer}} 
-                    <button type="button" class="btn btn-outline-success btn-sm" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Pay</button>
+                    <button type="button" class="btn btn-outline-success btn-sm ready" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Pay</button>
                     </li>
                     {{/if}}
                     {{/each}}
@@ -42,3 +41,26 @@
             </div>
         </div>
     </main>
+    <script type="text/javascript">
+        $(function(){
+            $(".preparing").on("click", function(){
+                let id = $(this).data("id");
+
+                $.ajax(`/api/ready/${id}`, {
+                    type: "PUT"
+                }).then(function(){
+                    location.reload();
+                });
+            });
+
+            $(".ready").on("click", function(){
+                let id = $(this).data("id");
+                
+                $.ajax(`/api/done/${id}`, {
+                    type: "PUT"
+                }).then(function(){
+                    location.reload();
+                })
+            })
+        });
+    </script>
