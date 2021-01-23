@@ -31,7 +31,7 @@ module.exports = function(app) {
   });
 
   //New order page
-  app.get("/new-order", async (req, res) => {
+  app.get("/new-order", isAuthenticated, async (req, res) => {
     const sizes = await db.Size.findAll({});
 
     const toppings = await db.Topping.findAll({});
@@ -46,14 +46,14 @@ module.exports = function(app) {
   });
 
   //Add topping page
-  app.get("/add-topping", async (req, res) => {
+  app.get("/add-topping", isAuthenticated, async (req, res) => {
     const toppings = await db.Topping.findAll({});
 
     const hbsObject = { toppings };
 
     res.render("add-topping", hbsObject);
   });
-  app.get("/index", async (req, res) => {
+  app.get("/index", isAuthenticated, async (req, res) => {
     const orders = await db.Order.findAll({});
 
     const orderToppings = await db.OrderToppings.findAll({});
@@ -68,7 +68,7 @@ module.exports = function(app) {
   });
 
   //Previous Orders oage
-  app.get("/previous-orders", async (req, res) => {
+  app.get("/previous-orders", isAuthenticated, async (req, res) => {
     const orders = await db.Order.findAll({
       where: {
         StatusId: 3
@@ -89,7 +89,7 @@ module.exports = function(app) {
     res.render("previous-orders", hbsObject);
   });
 
-  app.get("/order-details/:id", async (req, res) => {
+  app.get("/order-details/:id", isAuthenticated, async (req, res) => {
     const orderToppings = await db.OrderToppings.findAll({
       where: {
         OrderId: Number(req.params.id)
