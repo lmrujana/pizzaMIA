@@ -38,6 +38,7 @@
                     <button type="button" class="btn btn-outline-success btn-sm order-details" data-id="{{dataValues.id}}">Order Details</button>
                     <button type="button" class="btn btn-outline-success btn-sm ready" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Pay</button>
                     </li>
+                    <a>Order Completed on <span>{{moment dataValues.updatedAt format="MM-DD-YYYY"}}</span> at <span>{{moment dataValues.updatedAt format="h:mm:ss a"}}</span></a>
                     {{/if}}
                     {{/each}}
                     
