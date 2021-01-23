@@ -88,4 +88,34 @@ module.exports = function(app) {
 
     res.render("previous-orders", hbsObject);
   });
+
+  app.get("/order-details/:id", async (req, res) => {
+    const orderToppings = await db.OrderToppings.findAll({
+      where: {
+        OrderId: Number(req.params.id)
+      },
+      include: [
+        {
+          model: db.Order,
+          as: "order",
+          include: [
+            {
+              model: db.Size,
+              as: "size"
+            }
+          ]
+        },
+        {
+          model: db.Topping,
+          as: "topping"
+        }
+      ]
+    });
+    const hbsObject = {
+      orderToppings
+    };
+
+    console.log(hbsObject);
+    res.render("order-details", hbsObject);
+  });
 };
