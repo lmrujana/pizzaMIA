@@ -1,0 +1,18 @@
+<header>
+    <div class="container">
+        <h1>Previous Orders</h1>
+        <nav class="nav">
+            <a class="nav-link" href="/index">Main Page</a>
+            <a class="nav-link" href="/new-order">New Order</a>
+            <a class="nav-link" href="/add-topping">Add Topping</a>
+        </nav>
+    </div>
+</header>
+
+
+<ul>
+    {{#each orders}}
+        <li>{{dataValues.id}} - {{dataValues.customer}} - {{size.dataValues.label}} - ${{size.dataValues.price}}</li>
+        <a>Order Paid and Picked up on <span>{{moment dataValues.updatedAt format="MM-DD-YYYY"}}</span> at <span>{{moment dataValues.updatedAt format="h:mm:ss a"}}</span></a>
+    {{/each}}
+</ul>
