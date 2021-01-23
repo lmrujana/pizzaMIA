@@ -13,5 +13,6 @@
 <ul>
     {{#each orders}}
         <li>{{dataValues.id}} - {{dataValues.customer}} - {{size.dataValues.label}} - ${{size.dataValues.price}}</li>
+        <a>Order Paid and Picked up on <span>{{moment dataValues.updatedAt format="MM-DD-YYYY"}}</span> at <span>{{moment dataValues.updatedAt format="h:mm:ss a"}}</span></a>
     {{/each}}
 </ul>
