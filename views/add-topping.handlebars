@@ -1,23 +1,31 @@
-<nav class="nav">
-    <a class="nav-link" href="/index">Main Page</a>
-    <a class="nav-link" href="/new-order">New Order</a>
-    <a class="nav-link" href="/add-topping">Add Topping</a>
-</nav>
+<header>
+    <div class="container-sm">
+        <h1>Add a New Topping</h1>
+        <nav class="nav">
+            <a class="nav-link" href="/index">Main Page</a>
+            <a class="nav-link" href="/new-order">New Order</a>
+            <a class="nav-link" href="/add-topping">Add Topping</a>
+        </nav>
+    </div>
+</header>
 
-<h1>Add a new topping</h1>
+<br><br>
 
-<p>Available toppings:</p>
-<ul>
-    {{#each toppings}}
+<div class="container">
+
+    <h4>Available toppings:</h4>
+    <ul>
+        {{#each toppings}}
         <li>{{dataValues.label}}</li>
-    {{/each}}
-</ul>
+        {{/each}}
+    </ul>
 
-<form method="POST" id="add-topping-form">
-    <label for="label">Topping's Name (label): </label>
-    <input type="text" name="label" id="label">
-    <input type="submit" value="Add topping">
-</form>
+    <form method="POST" id="add-topping-form">
+        <label for="label">Topping's Name (label): </label>
+        <input type="text" name="label" id="label">
+        <input type="submit" value="Add topping">
+    </form>
+</div>
 
 <script type="text/javascript">
     $(function(){
