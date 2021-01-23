@@ -1,6 +1,6 @@
 <header>
         <div class="container-sm">
-            <h4 class="nav-title">Welcome User</h4>
+            <h4 class="nav-title">Welcome <span class="member-name"></span></h4>
             <div id="clockbox"></div>
             <nav class="nav">
                 <a class="nav-link" href="/previous-orders">Previous Orders</a>
@@ -45,6 +45,11 @@
         </div>
     </main>
     <script type="text/javascript">
+        $(function() {
+            $.get("/api/user_data").then(data => {
+            $(".member-name").text(data.username);
+        });
+        })
         $(function(){
             $(".preparing").on("click", function(){
                 let id = $(this).data("id");
