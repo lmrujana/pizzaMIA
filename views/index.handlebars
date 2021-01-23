@@ -13,12 +13,13 @@
     <main class="body">
         <div class="containers containers1">
             <div class="box">
-                <h3>Orders Waiting</h3>
+                <h3>Orders Preparing</h3>
                 <ul class="list-group">
                     {{#each orders}}
-                    {{#if (isEqual1 data.dataValues.StatusId)}}
+                    {{#if (isEqual1 dataValues.StatusId)}}
                     <li class="list-group-item list-group-item-danger">{{dataValues.id}} - {{dataValues.customer}}
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-status="{{dataValues.statusId}}" data-id="{{dataValues.id}}">Ready</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm order-details" data-id="{{dataValues.id}}">Order Details</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm preparing" data-status="{{dataValues.statusId}}" data-id="{{dataValues.id}}">Ready</button>
                     </li>
                     <a>Order Created on <span>{{moment dataValues.createdAt format="MM-DD-YYYY"}}</span> at <span>{{moment dataValues.createdAt format="h:mm:ss a"}}</span></a>
                     {{/if}}
@@ -32,8 +33,9 @@
                 <ul class="list-group">
                     {{#each orders}}
                     {{#if (isEqual2 dataValues.StatusId)}}
-                    <li class="list-group-item list-group-item-success">{{dataValues.id}} - {{dataValues.customer}} 
-                    <button type="button" class="btn btn-outline-success btn-sm" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Pay</button>
+                    <li class="list-group-item list-group-item-success">{{dataValues.id}} - {{dataValues.customer}}
+                    <button type="button" class="btn btn-outline-success btn-sm order-details" data-id="{{dataValues.id}}">Order Details</button>
+                    <button type="button" class="btn btn-outline-success btn-sm ready" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Pay</button>
                     </li>
                     {{/if}}
                     {{/each}}
@@ -62,7 +64,12 @@
                 }).then(function(){
                     location.reload();
                 })
-            })
+            });
+
+            $(".order-details").on("click", function(){
+                let id = $(this).data("id");
+                window.location.replace(`/order-details/${id}`);
+            });
         });
 
 
