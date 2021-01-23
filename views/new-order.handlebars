@@ -21,6 +21,11 @@
                 <input type="text" name="customer" id="customer">
             </div>
 
+        </div>
+
+        <br>
+
+        <div class="row">
             <div class="col-4">
                 {{!-- Pizza size --}}
                 <label for="SizeId">Select pizza size:</label>
@@ -34,16 +39,17 @@
                     <option value="4">X-Large</option> --}}
                 </select>
             </div>
+            <div class="col-6">
+                {{!-- Toppings --}}
+                <h5>Choose your pizza toppings:</h5>
+                <div class="border dark">
+                    {{#each toppings}}
+                    <label for={{dataValues.label}}>{{dataValues.label}}</label>
+                    <input id={{dataValues.label}} name="toppings" type="checkbox" value={{dataValues.id}}>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-
-        <br>
-
-        {{!-- Toppings --}}
-        <h5>Choose your pizza toppings:</h5>
-        {{#each toppings}}
-        <label for={{dataValues.label}}>{{dataValues.label}}</label>
-        <input id={{dataValues.label}} name="toppings" type="checkbox" value={{dataValues.id}}>
-        {{/each}}
         {{!-- <label for="cheese">Cheese</label>
         <input id="cheese" name="toppings" type="checkbox" value="1">
         <label for="pepperoni">Pepeperoni</label>

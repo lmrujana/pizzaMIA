@@ -13,18 +13,26 @@
 
 <div class="container">
 
-    <h4>Available toppings:</h4>
-    <ul>
-        {{#each toppings}}
-        <li>{{dataValues.label}}</li>
-        {{/each}}
-    </ul>
+    <div class="row">
+        <div class="col-6">
 
-    <form method="POST" id="add-topping-form">
-        <label for="label">Topping's Name (label): </label>
-        <input type="text" name="label" id="label">
-        <input type="submit" value="Add topping">
-    </form>
+            <form method="POST" id="add-topping-form">
+                <label for="label">Topping's Name (label): </label>
+                <input type="text" name="label" id="label">
+                <input type="submit" value="Add topping">
+            </form>
+        </div>
+        <div class="col-4">
+            <h4>Available toppings:</h4>
+            <div class="border success">
+                <ul>
+                    {{#each toppings}}
+                    <li>{{dataValues.label}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
