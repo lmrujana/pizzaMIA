@@ -20,12 +20,26 @@
 - https://github.com/lmrujana/project_2
 
 ## Contributors
-- Please find the contributors of this project below
-Jack Ceballos, Luis Rujana, Rich Wilkinson, Jakub Marchel & Joivre Charles
+- Please find the contributors of this project below:
+    - Jack Ceballos 
+    - Luis Rujana 
+    - Rich Wilkinson 
+    - Jakub Marchel 
+    - Joivre Charles
 
 ## Tests
-- Here is a description of tests that were completed on this project before release.
-- Tested on the local server 8080
+- Here are illustrations of the page in action that were completed on this project before release:
+
+    ![Login](test/assets/Login.png)
+
+    ![In Progress](test/assets/in.Progress.png)
+
+    ![New Topping](test/assets/newTopping.png)
+
+    ![New Order](test/assets/New.Order.png)
+
+
+
 
 ## License Used in this project
 - MIT
