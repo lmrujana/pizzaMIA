@@ -4,10 +4,10 @@
             <br>
             <div id="clockbox"></div>
             <nav class="nav">
-                <a class="nav-link" href="/previous-orders">Previous Orders</a>
+                <a class="nav-link manager-class" href="/previous-orders">Previous Orders</a>
                 <a class="nav-link" href="/new-order">New Order</a>
                 <a class="nav-link" href="/add-topping">Add Topping</a>
-                <a class="nav-link" href="#">Add Employee</a>
+                <a class="nav-link manager-class" href="#">Add Employee</a>
             </nav>
         </div>
 </header>
@@ -50,6 +50,10 @@
         $(function() {
             $.get("/api/user_data").then(data => {
             $(".member-name").text(data.username);
+        if (data.role !== "manager") {
+            $(".manager-class").addClass("disabled");
+        }
+            console.log(data);
         });
         })
         $(function(){

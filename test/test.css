@@ -180,3 +180,6 @@ aside {
 .bg-light{
     background-color: tomato;
 }
+.hide{
+    display: none;
+}
