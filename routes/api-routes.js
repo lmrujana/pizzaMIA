@@ -20,7 +20,8 @@ module.exports = function(app) {
   app.post("/api/signup", (req, res) => {
     db.User.create({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      role: req.body.role
     })
       .then(() => {
         res.redirect(307, "/api/login");
@@ -46,7 +47,8 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         username: req.user.username,
-        id: req.user.id
+        id: req.user.id,
+        role: req.user.role
       });
     }
   });
