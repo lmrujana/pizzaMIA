@@ -1,48 +1,109 @@
-<body>
-    <header>
+<header>
         <div class="container-sm">
-            <h4 class="nav-title">Welcome User</h4>
-            <nav>
-                <ul>
-                    <li><a href="#">Previous Orders</a></li>
-                    <li><a href="#">New Order</a></li>
-                    <li><a href="#">Add Topping</a></li>
-                    <li><a href="#">Add Employee</a></li>
-                </ul>
+            <h4 class="nav-title">Welcome <span class="member-name"></span></h4>
+            <br>
+            <div id="clockbox"></div>
+            <nav class="nav">
+                <a class="nav-link manager-class" href="/previous-orders">Previous Orders</a>
+                <a class="nav-link" href="/new-order">New Order</a>
+                <a class="nav-link" href="/add-topping">Add Topping</a>
+                <a class="nav-link manager-class" href="#">Add Employee</a>
             </nav>
         </div>
-    </header>
+</header>
     <main class="body">
-        <div class="containers">
+        <div class="containers containers1">
             <div class="box">
-                <h3>Orders Waiting</h3>
+                <h3>Orders Preparing</h3>
                 <ul class="list-group">
-                    {{#each Order}}
-                    {{#if statusId = 0}}
-                    <li class="list-group-item list-group-item-danger">{{customer}} 
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-status="{{statusId}}" data-id="{{this.id}}">Ready</button>
+                    {{#each orders}}
+                    {{#if (isEqual1 dataValues.StatusId)}}
+                    <li class="list-group-item list-group-item-danger">{{dataValues.id}} - {{dataValues.customer}}
+                    <button type="button" class="btn btn-outline-danger btn-sm order-details" data-id="{{dataValues.id}}">Order Details</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm preparing" data-status="{{dataValues.statusId}}" data-id="{{dataValues.id}}">Ready</button>
                     </li>
+                    <a>Order Created on <span>{{moment dataValues.createdAt format="MM-DD-YYYY"}}</span> at <span>{{moment dataValues.createdAt format="h:mm:ss a"}}</span></a>
                     {{/if}}
-                    {{/each}}  
-                  
-                    
+                    {{/each}}
                 </ul>
             </div>
         </div>
-        <div class="containers">
+        <div class="containers containers2">
             <div class="box box-two">
                 <h3>Orders Ready</h3>
                 <ul class="list-group">
-                    {{#each Order}}
-                    {{if statusId = 1}}
-                    <li class="list-group-item list-group-item-success">{{customer}} 
-                    <button type="button" class="btn btn-outline-success btn-sm" data-status="{{statusId}}" data-id="{{this.id}}">Pay</button>
+                    {{#each orders}}
+                    {{#if (isEqual2 dataValues.StatusId)}}
+                    <li class="list-group-item list-group-item-success">{{dataValues.id}} - {{dataValues.customer}}
+                    <button type="button" class="btn btn-outline-success btn-sm order-details" data-id="{{dataValues.id}}">Order Details</button>
+                    <button type="button" class="btn btn-outline-success btn-sm ready" data-status="{{dataValues.StatusId}}" data-id="{{dataValues.id}}">Pay</button>
                     </li>
+                    <a>Order Completed on <span>{{moment dataValues.updatedAt format="MM-DD-YYYY"}}</span> at <span>{{moment dataValues.updatedAt format="h:mm:ss a"}}</span></a>
                     {{/if}}
                     {{/each}}
-                  
                     
                 </ul>
             </div>
         </div>
     </main>
+    <script type="text/javascript">
+        $(function() {
+            $.get("/api/user_data").then(data => {
+            $(".member-name").text(data.username);
+        if (data.role !== "manager") {
+            $(".manager-class").addClass("disabled");
+        }
+            console.log(data);
+        });
+        })
+        $(function(){
+            $(".preparing").on("click", function(){
+                let id = $(this).data("id");
+
+                $.ajax(`/api/ready/${id}`, {
+                    type: "PUT"
+                }).then(function(){
+                    location.reload();
+                });
+            });
+
+            $(".ready").on("click", function(){
+                let id = $(this).data("id");
+                
+                $.ajax(`/api/done/${id}`, {
+                    type: "PUT"
+                }).then(function(){
+                    location.reload();
+                })
+            });
+
+            $(".order-details").on("click", function(){
+                let id = $(this).data("id");
+                window.location.replace(`/order-details/${id}`);
+            });
+        });
+
+
+var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function GetClock(){
+var d=new Date();
+var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
+var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
+
+if(nhour==0){ap=" AM";nhour=12;}
+else if(nhour<12){ap=" AM";}
+else if(nhour==12){ap=" PM";}
+else if(nhour>12){ap=" PM";nhour-=12;}
+
+if(nmin<=9) nmin="0"+nmin;
+if(nsec<=9) nsec="0"+nsec;
+
+var clocktext=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear+" "+nhour+":"+nmin+":"+nsec+ap+"";
+document.getElementById('clockbox').innerHTML=clocktext;
+}
+
+GetClock();
+setInterval(GetClock,1000);
+</script>    

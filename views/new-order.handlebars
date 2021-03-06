@@ -1,52 +1,81 @@
-<h1>New Order</h1>
+<header>
+    <div class="container-sm">
+        <h1>New Order</h1>
+        <nav class="nav">
+            <a class="nav-link" href="/index">Main Page</a>
+            <a class="nav-link" href="/new-order">New Order</a>
+            <a class="nav-link" href="/add-topping">Add Topping</a>
+        </nav>
+    </div>
+</header>
 
-<form method="POST" id="new-order-form">
-    {{!-- Customer Name --}}
-    <label for="customer">Enter customer name:</label>
-    <input type="text" name="customer" id="customer">
-    {{!-- Pizza size --}}
-    <label for="SizeId">Select pizza size:</label>
-    <select id="SizeId" name="SizeId">
-        {{#each sizes}}
-            <option value={{dataValues.id}}>{{dataValues.label}} - ${{dataValues.price}}</option>
-        {{/each}}
-        {{!-- <option value="1">Small</option>
-        <option value="2">Medium</option>
-        <option value="3">Large</option>
-        <option value="4">X-Large</option> --}}
-    </select>
+<br><br>
 
-    {{!-- Toppings --}}
-    <p>Choose your pizza toppings:</p>
-        {{#each toppings}}
-            <label for={{dataValues.label}}>{{dataValues.label}}</label>
-            <input id={{dataValues.label}} name="toppings" type="checkbox" value={{dataValues.id}}>
-        {{/each}}
-    {{!-- <label for="cheese">Cheese</label>
-    <input id="cheese" name="toppings" type="checkbox" value="1">
-    <label for="pepperoni">Pepeperoni</label>
-    <input id="pepperoni" name="toppings" type="checkbox" value="2">
-    <label for="ham">Ham</label>
-    <input id="ham" name="toppings" type="checkbox" value="3">
-    <label for="mushrooms">Mushrooms</label>
-    <input id="mushrooms" name="toppings" type="checkbox" value="4">
-    <label for="pineapple">Pineapple</label>
-    <input id="pinneaple" name="toppings" type="checkbox" value="5">  --}}
+<div class="container">
+    <form method="POST" id="new-order-form">
+        <div class="row">
 
-    {{!-- Submit button --}}
-    <br><br>
-    <input type="submit" value="Send Order">
-</form>
+            <div class="col-4">
+                {{!-- Customer Name --}}
+                <label for="customer">Enter customer name:</label>
+                <input type="text" name="customer" id="customer">
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-4">
+                {{!-- Pizza size --}}
+                <label for="SizeId">Select pizza size:</label>
+                <select id="SizeId" name="SizeId">
+                    {{#each sizes}}
+                    <option value={{dataValues.id}}>{{dataValues.label}} - ${{dataValues.price}}</option>
+                    {{/each}}
+                    {{!-- <option value="1">Small</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Large</option>
+                    <option value="4">X-Large</option> --}}
+                </select>
+            </div>
+            <div class="col-6">
+                {{!-- Toppings --}}
+                <h5>Choose your pizza toppings:</h5>
+                <div class="border dark">
+                    {{#each toppings}}
+                    <label for={{dataValues.label}}>{{dataValues.label}}</label>
+                    <input id={{dataValues.label}} name="toppings" type="checkbox" value={{dataValues.id}}>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{!-- <label for="cheese">Cheese</label>
+        <input id="cheese" name="toppings" type="checkbox" value="1">
+        <label for="pepperoni">Pepeperoni</label>
+        <input id="pepperoni" name="toppings" type="checkbox" value="2">
+        <label for="ham">Ham</label>
+        <input id="ham" name="toppings" type="checkbox" value="3">
+        <label for="mushrooms">Mushrooms</label>
+        <input id="mushrooms" name="toppings" type="checkbox" value="4">
+        <label for="pineapple">Pineapple</label>
+        <input id="pinneaple" name="toppings" type="checkbox" value="5"> --}}
+
+        {{!-- Submit button --}}
+        <br><br>
+        <input type="submit" value="Send Order">
+    </form>
+</div>
 
 <script type="text/javascript">
-    $("#new-order-form").on("submit", function(event){
+    $("#new-order-form").on("submit", function (event) {
         event.preventDefault();
 
         const customer = $.trim($("#customer").val());
         const SizeId = $("#SizeId").val();
         const toppings = [];
 
-        $("input:checkbox[name=toppings]:checked").each(function(){
+        $("input:checkbox[name=toppings]:checked").each(function () {
             toppings.push($(this).val());
         });
 
@@ -61,8 +90,8 @@
 
         $.ajax("/api/orders-new", {
             type: "POST",
-            data: newOrder 
-        }).then(function(){
+            data: newOrder
+        }).then(function () {
             console.log('New order added!');
 
             location.reload();
